@@ -1,12 +1,15 @@
+import BackButton from "@/app/components/backButton";
 import ButtonAction from "@/app/components/buttonAction";
 
 const ClientDetailsPage = () => {
     return ( 
         <div className="items-center ">
+            <BackButton />
             <div className="mb-8 text-center">
                 <h2>Cliente 1</h2>
             </div>
             <div className="content">
+                
                 <ButtonAction />
                 {/*INFOS*/}
                 <p>email</p>
