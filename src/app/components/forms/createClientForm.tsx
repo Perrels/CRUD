@@ -82,21 +82,29 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
               className="grow"
             />
           </label>
-          <select
-            {...register("origem", { required: true })}
-            className="select select-bordered w-full max-w-xs grow"
-            defaultValue={""}
-          >
-            <option disabled value="">
-              Origem
-            </option>
-            {/*MAP PARA MOSTRAR TODOS OS NOMES DAS ORIGENS*/}
-            {dataOrigens?.map((item) => (
-              <option className="capitalize" key={item.id} value={item.name}>
-                {item.name}
+
+          {isLoadingOrigens ? (
+            <div className="align-middle">
+              <span className="loading loading-spinner loading-lg justify-center"></span>
+            </div>
+          ) : (
+            <select
+              {...register("origem", { required: true })}
+              className="select select-bordered grow max-w-xs"
+              defaultValue={""}
+            >
+              <option disabled value="">
+                Origem
               </option>
-            ))}
-          </select>
+              {/*MAP PARA MOSTRAR TODOS OS NOMES DAS ORIGENS*/}
+              {dataOrigens?.map((item) => (
+                <option className="capitalize" key={item.id} value={item.name}>
+                  {item.name}
+                </option>
+              ))}
+            </select>
+          )}
+
           <button type="submit" className="btn btn-primary">
             {/*se isEditing is true show Editar else Cadastrar*/}
             {isEditing ? "Editar" : "Cadastrar"}
