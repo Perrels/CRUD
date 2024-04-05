@@ -1,6 +1,7 @@
 "use client";
 
 import { FormCreateCliente } from "@/app/types";
+import { Origem } from "@prisma/client";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { FC } from "react";
@@ -10,7 +11,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 //os dados dela de forma mais eficaz
 interface CreateClientFormProps {
   submit: SubmitHandler<FormCreateCliente>;
-  isEditing: boolean
+  isEditing: boolean;
 }
 
 const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
@@ -19,15 +20,17 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
   //const submit = (data) => console.log(data)
 
   //pegando os valores de origem usando TranStack Query e Axios
-  const {data: dataOrigens, isLoading: isLoadingOrigens} = useQuery({
-    queryKey: ["origens"],
-    queryFn: async () => {
-      const response = await axios.get("/api/origem")
-      return response.data
+  const { data: dataOrigens, isLoading: isLoadingOrigens } = useQuery<Origem[]>(
+    {
+      queryKey: ["origens"],
+      queryFn: async () => {
+        const response = await axios.get("/api/origem");
+        return response.data;
+      },
     }
-  })
+  );
   //mostra as origens no console do navegador
-  console.log(dataOrigens)
+  console.log(dataOrigens);
 
   return (
     <div className="items-center justify-center">
@@ -42,7 +45,6 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
               {...register("nome", { required: true })}
               type="text"
               className="grow"
-              placeholder="Daisy"
             />
           </label>
           <label className="input input-bordered flex items-center gap-2">
@@ -51,12 +53,12 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
               {...register("email", { required: true })}
               type="text"
               className="grow"
-              placeholder="daisy@site.com"
+              placeholder="email@dominio.com"
             />
           </label>
           <label className="input input-bordered flex items-center gap-2">
             <input
-              {...register("telefone", { required: true })}
+              {...register("telefone")}
               type="number"
               className="grow"
               placeholder="Telefone"
@@ -65,7 +67,7 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
           </label>
           <label className="input input-bordered flex items-center gap-2">
             <input
-              {...register("celular", { required: true })}
+              {...register("celular")}
               type="number"
               className="grow"
               placeholder="Celular"
@@ -88,13 +90,16 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
             <option disabled value="">
               Origem
             </option>
-            <option>Balcão</option>
-            <option>Loja 1</option>
-            <option>Loja 2</option>
+            {/*MAP PARA MOSTRAR TODOS OS NOMES DAS ORIGENS*/}
+            {dataOrigens?.map((item) => (
+              <option className="capitalize" key={item.id} value={item.name}>
+                {item.name}
+              </option>
+            ))}
           </select>
           <button type="submit" className="btn btn-primary">
             {/*se isEditing is true show Editar else Cadastrar*/}
-            { isEditing ? "Editar" : "Cadastrar"}
+            {isEditing ? "Editar" : "Cadastrar"}
           </button>
         </form>
       </div>
