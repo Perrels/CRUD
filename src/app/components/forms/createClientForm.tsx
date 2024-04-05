@@ -1,6 +1,8 @@
 "use client";
 
 import { FormCreateCliente } from "@/app/types";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 
@@ -14,8 +16,18 @@ interface CreateClientFormProps {
 const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
   //chamando o useForm como está na doc deles
   const { register, handleSubmit } = useForm<FormCreateCliente>();
-
   //const submit = (data) => console.log(data)
+
+  //pegando os valores de origem usando TranStack Query e Axios
+  const {data: dataOrigens, isLoading: isLoadingOrigens} = useQuery({
+    queryKey: ["origens"],
+    queryFn: async () => {
+      const response = await axios.get("/api/origem")
+      return response.data
+    }
+  })
+  //mostra as origens no console do navegador
+  console.log(dataOrigens)
 
   return (
     <div className="items-center justify-center">
