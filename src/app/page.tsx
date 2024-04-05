@@ -23,7 +23,7 @@ async function getClientes(){
 export  default async function Home() {
   //armazenando clientes na variavel
   const clientes = await getClientes()
-  console.log(clientes)
+  //console.log(clientes)
 
   return (
     <div className="grid items-center justify-center md:grid-cols-2 lg:grid-cols-3 gap-4">
