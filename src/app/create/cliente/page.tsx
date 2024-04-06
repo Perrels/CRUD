@@ -39,6 +39,7 @@ const CreateClientPage = () => {
     onSuccess: () => {
       toast()
       router.push("/");
+      router.refresh()
     },
   });
 
