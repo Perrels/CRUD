@@ -1,10 +1,10 @@
 export type FormCreateCliente = {
-    nome: string,
+    name: string,
     email: string,
-    telefone: number,
-    celular: number,
+    telefone: string,
+    celular: string,
     cpf_cnpj: string,
-    origem: string
+    origemId: string
 }
 
 export type FormInputPost = {

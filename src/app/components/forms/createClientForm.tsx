@@ -42,7 +42,7 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
           <label className="input input-bordered flex items-center gap-2">
             Nome
             <input
-              {...register("nome", { required: true })}
+              {...register("name", { required: true })}
               type="text"
               className="grow"
             />
@@ -89,7 +89,7 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
             </div>
           ) : (
             <select
-              {...register("origem", { required: true })}
+              {...register("origemId", { required: true })}
               className="select select-bordered grow max-w-xs"
               defaultValue={""}
             >
@@ -98,7 +98,7 @@ const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
               </option>
               {/*MAP PARA MOSTRAR TODOS OS NOMES DAS ORIGENS*/}
               {dataOrigens?.map((item) => (
-                <option className="capitalize" key={item.id} value={item.name}>
+                <option className="capitalize" key={item.id} value={item.id}>
                   {item.name}
                 </option>
               ))}

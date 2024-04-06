@@ -20,14 +20,14 @@ model Origem {
 }
 
 model Clientes {
-  id         String   @id @default(cuid()) @unique
-  name       String   @db.VarChar(200)
-  email      String   @db.VarChar(200)
-  celular    Int      @db.Integer
-  telefone   Int      @db.Integer
-  cpf_cnpj   String   @db.VarChar(40)
-  createAt   DateTime @default(now())
-  updateAt   DateTime @updatedAt
+  id       String   @id @unique @default(cuid())
+  name     String   @db.VarChar(200)
+  email    String   @db.VarChar(200)
+  celular  String   @db.VarChar(30)
+  telefone String   @db.VarChar(30)
+  cpf_cnpj String   @db.VarChar(40)
+  createAt DateTime @default(now())
+  updateAt DateTime @updatedAt
   OrigemId String
-  Origem   Origem @relation(fields: [OrigemId], references: [id])
+  Origem   Origem   @relation(fields: [OrigemId], references: [id])
 }
