@@ -37,9 +37,9 @@ const CreateClientPage = () => {
       console.log(error);
     },
     onSuccess: () => {
-      toast()
       router.push("/");
       router.refresh()
+      toast()
     },
   });
 

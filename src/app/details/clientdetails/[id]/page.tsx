@@ -47,7 +47,7 @@ const ClientDetailsPage: FC<ClienteDetailProps> = async ({ params }) => {
         <p className="text-xl capitalize"><span className="font-bold">CPF/CNPJ </span>{cliente?.cpf_cnpj}</p>
       </div>
       <div className="mt-5">
-        <ButtonAction />
+        <ButtonAction id={params.id} />
       </div>
     </div>
   );

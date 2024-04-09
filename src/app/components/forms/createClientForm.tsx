@@ -12,11 +12,15 @@ import { SubmitHandler, useForm } from "react-hook-form";
 interface CreateClientFormProps {
   submit: SubmitHandler<FormCreateCliente>;
   isEditing: boolean;
+  //initialValue serve para preencher os valores no formulário de update
+  initialValue?: FormCreateCliente
 }
 
-const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing }) => {
+const CreateClientForm: FC<CreateClientFormProps> = ({ submit, isEditing, initialValue }) => {
   //chamando o useForm como está na doc deles
-  const { register, handleSubmit } = useForm<FormCreateCliente>();
+  const { register, handleSubmit } = useForm<FormCreateCliente>({
+    defaultValues: initialValue
+  });
   //const submit = (data) => console.log(data)
 
   //pegando os valores de origem usando TranStack Query e Axios
