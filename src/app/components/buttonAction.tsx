@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
@@ -14,14 +14,16 @@ interface ButtonActionProps {
 
 //componente que utiliza o parametro para verifcar qual é o cliente
 const ButtonAction: FC<ButtonActionProps> = ({ id }) => {
-    const toast = () => {
-        <div className="toast">
-          <div className="alert alert-info">
-            <span>Cliente adicionado com sucesso</span>
-          </div>
-        </div>;
-      };
-    const router = useRouter()
+  const toast = () => {
+    <div className="toast">
+      <div className="alert alert-info">
+        <span>Cliente adicionado com sucesso</span>
+      </div>
+    </div>;
+  };
+
+  
+  const router = useRouter();
   //using mutation and axios to get delete api
   const { mutate: deleteClientes, isPending: isPendingDelete } = useMutation({
     mutationFn: async () => {
@@ -36,11 +38,13 @@ const ButtonAction: FC<ButtonActionProps> = ({ id }) => {
       router.refresh();
     },
   });
+
   return (
     <div className="flex gap-4 my-3">
       <Link href={`/edit/client/${id}`} className="btn btn-warning">
         <BiPencil /> EDITAR
       </Link>
+
       <button className="btn btn-error" onClick={() => deleteClientes()}>
         <BiTrash /> DELETE
       </button>

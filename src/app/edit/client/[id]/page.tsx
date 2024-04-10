@@ -45,12 +45,7 @@ const EditClientPage: FC<EditClientPageProps> = ({ params }) => {
 
   const handleEditClient: SubmitHandler<FormCreateCliente> = (data) => {
     {
-      try {
-        console.log(`esses sao os dados ${data}`)
-        updateCliente(data);
-      } catch (error) {
-        console.log(`Erro ao clicar no botão`)
-      }
+      updateCliente(data);
     }
   };
 
