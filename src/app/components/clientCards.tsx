@@ -8,8 +8,8 @@ interface ClientCardsProps {
     id: string;
     name: string;
     email: string;
-    celular: number;
-    telefone: number;
+    celular: string;
+    telefone: string;
     cpf_cnpj: string;
     Origem: Origem;
   };

@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 import QueryProvider from "./components/queryProvider";
+import LateralMenu from "./components/lateralMenu";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,8 +21,15 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <QueryProvider>
-          <Navbar />
-          <div className="container mx-auto pt-12 px-5">{children}</div>
+          <div className="flex">
+            <div className="h-[100vh]">
+              <LateralMenu />
+            </div>
+            <div className="w-full">
+              <Navbar />
+              <div className="container mx-auto pt-12 px-5">{children}</div>
+            </div>
+          </div>
         </QueryProvider>
       </body>
     </html>

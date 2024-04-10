@@ -25,7 +25,7 @@ const ButtonAction: FC<ButtonActionProps> = ({ id }) => {
   
   const router = useRouter();
   //using mutation and axios to get delete api
-  const { mutate: deleteClientes, isPending: isPendingDelete } = useMutation({
+  const { mutate: deleteClientes} = useMutation({
     mutationFn: async () => {
       return axios.delete(`/api/cliente/${id}`);
     },

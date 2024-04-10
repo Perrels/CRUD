@@ -27,7 +27,6 @@ export  default async function Home() {
 
   return (
     <div className="grid items-center justify-center md:grid-cols-2 lg:grid-cols-3 gap-4">
-
       {clientes.map((cliente) => (
         <ClientCards key={cliente.id} cliente={cliente} />
       ))}
